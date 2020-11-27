@@ -31,6 +31,7 @@
 <li><a href="/docs/api/interfaces/mediaqueuecontainermetadata">MediaQueueContainerMetadata</a></li>
 <li><a href="/docs/api/interfaces/mediaqueuedata">MediaQueueData</a></li>
 <li><a href="/docs/api/interfaces/mediaqueueitem">MediaQueueItem</a></li>
+<li><a href="/docs/api/interfaces/mediaseekoptions">MediaSeekOptions</a></li>
 <li><a href="/docs/api/interfaces/mediastatus">MediaStatus</a></li>
 <li><a href="/docs/api/interfaces/mediatrack">MediaTrack</a></li>
 <li><a href="/docs/api/interfaces/movie">Movie</a></li>
@@ -52,6 +53,7 @@
 <ul>
 <li><a href="/docs/api/#usecastsession">useCastSession</a></li>
 <li><a href="/docs/api/#usecaststate">useCastState</a></li>
+<li><a href="/docs/api/#usemediastatus">useMediaStatus</a></li>
 <li><a href="/docs/api/#useremotemediaclient">useRemoteMediaClient</a></li>
 </ul>
 <h2><a class="anchor" aria-hidden="true" id="variables-1"></a><a href="#variables-1" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Variables</h2>
@@ -84,6 +86,10 @@
 <p>▸ <strong>useCastState</strong>(): <em>undefined | <a href="/docs/api/enums/caststate#no_devices_available">NO_DEVICES_AVAILABLE</a> | <a href="/docs/api/enums/caststate#not_connected">NOT_CONNECTED</a> | <a href="/docs/api/enums/caststate#connecting">CONNECTING</a> | <a href="/docs/api/enums/caststate#connected">CONNECTED</a></em></p>
 <p><strong>Returns:</strong> <em>undefined | <a href="/docs/api/enums/caststate#no_devices_available">NO_DEVICES_AVAILABLE</a> | <a href="/docs/api/enums/caststate#not_connected">NOT_CONNECTED</a> | <a href="/docs/api/enums/caststate#connecting">CONNECTING</a> | <a href="/docs/api/enums/caststate#connected">CONNECTED</a></em></p>
 <hr>
+<h3><a class="anchor" aria-hidden="true" id="usemediastatus"></a><a href="#usemediastatus" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>useMediaStatus</h3>
+<p>▸ <strong>useMediaStatus</strong>(): <em>null | <a href="/docs/api/interfaces/mediastatus">MediaStatus</a></em></p>
+<p><strong>Returns:</strong> <em>null | <a href="/docs/api/interfaces/mediastatus">MediaStatus</a></em></p>
+<hr>
 <h3><a class="anchor" aria-hidden="true" id="useremotemediaclient"></a><a href="#useremotemediaclient" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>useRemoteMediaClient</h3>
 <p>▸ <strong>useRemoteMediaClient</strong>(): <em>null | <a href="/docs/api/classes/remotemediaclient">RemoteMediaClient</a>‹›</em></p>
 <p>Hook that provides the current RemoteMediaClient (may be <code>null</code>).</p>
@@ -97,4 +103,4 @@
 }
 </code></pre>
 <p><strong>Returns:</strong> <em>null | <a href="/docs/api/classes/remotemediaclient">RemoteMediaClient</a>‹›</em></p>
-</span></div></article></div><div class="docs-prevnext"></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#index">Index</a><ul class="toc-headings"><li><a href="#enumerations">Enumerations</a></li><li><a href="#classes">Classes</a></li><li><a href="#interfaces">Interfaces</a></li><li><a href="#variables">Variables</a></li><li><a href="#functions">Functions</a></li></ul></li><li><a href="#variables-1">Variables</a><ul class="toc-headings"><li><a href="#const-eventemitter"><code>Const</code> EventEmitter</a></li><li><a href="#native">Native</a></li><li><a href="#const-manager"><code>Const</code> manager</a></li></ul></li><li><a href="#functions-1">Functions</a><ul class="toc-headings"><li><a href="#usecastsession">useCastSession</a></li><li><a href="#usecaststate">useCastState</a></li><li><a href="#useremotemediaclient">useRemoteMediaClient</a></li></ul></li></ul></nav></div></div></body></html>
+</span></div></article></div><div class="docs-prevnext"></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#index">Index</a><ul class="toc-headings"><li><a href="#enumerations">Enumerations</a></li><li><a href="#classes">Classes</a></li><li><a href="#interfaces">Interfaces</a></li><li><a href="#variables">Variables</a></li><li><a href="#functions">Functions</a></li></ul></li><li><a href="#variables-1">Variables</a><ul class="toc-headings"><li><a href="#const-eventemitter"><code>Const</code> EventEmitter</a></li><li><a href="#native">Native</a></li><li><a href="#const-manager"><code>Const</code> manager</a></li></ul></li><li><a href="#functions-1">Functions</a><ul class="toc-headings"><li><a href="#usecastsession">useCastSession</a></li><li><a href="#usecaststate">useCastState</a></li><li><a href="#usemediastatus">useMediaStatus</a></li><li><a href="#useremotemediaclient">useRemoteMediaClient</a></li></ul></li></ul></nav></div></div></body></html>
