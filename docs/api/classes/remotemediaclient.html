@@ -69,6 +69,8 @@
 <li><a href="/docs/api/classes/remotemediaclient#queueinsertandplayitem">queueInsertAndPlayItem</a></li>
 <li><a href="/docs/api/classes/remotemediaclient#queueinsertitem">queueInsertItem</a></li>
 <li><a href="/docs/api/classes/remotemediaclient#queueinsertitems">queueInsertItems</a></li>
+<li><a href="/docs/api/classes/remotemediaclient#queuenext">queueNext</a></li>
+<li><a href="/docs/api/classes/remotemediaclient#queueprev">queuePrev</a></li>
 <li><a href="/docs/api/classes/remotemediaclient#seek">seek</a></li>
 <li><a href="/docs/api/classes/remotemediaclient#setactivemediatracks">setActiveMediaTracks</a></li>
 <li><a href="/docs/api/classes/remotemediaclient#setplaybackrate">setPlaybackRate</a></li>
@@ -206,7 +208,7 @@
 <p><strong>Returns:</strong> <em>Promise‹void›</em></p>
 <hr>
 <h3><a class="anchor" aria-hidden="true" id="queueinsertitem"></a><a href="#queueinsertitem" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>queueInsertItem</h3>
-<p>▸ <strong>queueInsertItem</strong>(<code>item</code>: <a href="/docs/api/interfaces/mediaqueueitem">MediaQueueItem</a>, <code>beforeItemId?</code>: undefined | number, <code>customData?</code>: undefined | object): <em>Promise‹void›</em></p>
+<p>▸ <strong>queueInsertItem</strong>(<code>item</code>: <a href="/docs/api/interfaces/mediaqueueitem">MediaQueueItem</a>, <code>beforeItemId?</code>: number | null, <code>customData?</code>: undefined | object): <em>Promise‹void›</em></p>
 <p>Inserts a single item into the queue.</p>
 <p><strong>Parameters:</strong></p>
 <table>
@@ -215,14 +217,14 @@
 </thead>
 <tbody>
 <tr><td><code>item</code></td><td><a href="/docs/api/interfaces/mediaqueueitem">MediaQueueItem</a></td><td>The item to insert.</td></tr>
-<tr><td><code>beforeItemId?</code></td><td>undefined | number</td><td>The ID of the item that will be located immediately after the inserted item. If the value is <code>null</code>, or does not refer to any item currently in the queue, the inserted item will be appended to the end of the queue.</td></tr>
+<tr><td><code>beforeItemId?</code></td><td>number | null</td><td>The ID of the item that will be located immediately after the inserted item. If the value is <code>null</code>, or does not refer to any item currently in the queue, the inserted item will be appended to the end of the queue.</td></tr>
 <tr><td><code>customData?</code></td><td>undefined | object</td><td>Custom application-specific data to pass along with the request.</td></tr>
 </tbody>
 </table>
 <p><strong>Returns:</strong> <em>Promise‹void›</em></p>
 <hr>
 <h3><a class="anchor" aria-hidden="true" id="queueinsertitems"></a><a href="#queueinsertitems" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>queueInsertItems</h3>
-<p>▸ <strong>queueInsertItems</strong>(<code>items</code>: <a href="/docs/api/interfaces/mediaqueueitem">MediaQueueItem</a>[], <code>beforeItemId?</code>: undefined | number, <code>customData?</code>: undefined | object): <em>Promise‹void›</em></p>
+<p>▸ <strong>queueInsertItems</strong>(<code>items</code>: <a href="/docs/api/interfaces/mediaqueueitem">MediaQueueItem</a>[], <code>beforeItemId?</code>: number | null, <code>customData?</code>: undefined | object): <em>Promise‹void›</em></p>
 <p>Inserts a list of new media items into the queue.</p>
 <p><strong>Parameters:</strong></p>
 <table>
@@ -231,8 +233,36 @@
 </thead>
 <tbody>
 <tr><td><code>items</code></td><td><a href="/docs/api/interfaces/mediaqueueitem">MediaQueueItem</a>[]</td><td>List of items to insert into the queue, in the order that they should be played. The <code>itemId</code> field of the items should be unassigned.</td></tr>
-<tr><td><code>beforeItemId?</code></td><td>undefined | number</td><td>The ID of the item that will be located immediately after the inserted list. If the value is <code>null</code>, or does not refer to any item currently in the queue, the inserted list will be appended to the end of the queue.</td></tr>
+<tr><td><code>beforeItemId?</code></td><td>number | null</td><td>The ID of the item that will be located immediately after the inserted list. If the value is <code>null</code>, or does not refer to any item currently in the queue, the inserted list will be appended to the end of the queue.</td></tr>
 <tr><td><code>customData?</code></td><td>undefined | object</td><td>Custom application-specific data to pass along with the request.</td></tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong> <em>Promise‹void›</em></p>
+<hr>
+<h3><a class="anchor" aria-hidden="true" id="queuenext"></a><a href="#queuenext" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>queueNext</h3>
+<p>▸ <strong>queueNext</strong>(<code>customData?</code>: undefined | object): <em>Promise‹void›</em></p>
+<p>Moves to the next item in the queue.</p>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr><th>Name</th><th>Type</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td><code>customData?</code></td><td>undefined | object</td><td>Custom application-specific data to pass along with the request. (Currently Android only. On iOS <code>customData</code> will be ignored.)</td></tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong> <em>Promise‹void›</em></p>
+<hr>
+<h3><a class="anchor" aria-hidden="true" id="queueprev"></a><a href="#queueprev" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>queuePrev</h3>
+<p>▸ <strong>queuePrev</strong>(<code>customData?</code>: undefined | object): <em>Promise‹void›</em></p>
+<p>Moves to the previous item in the queue.</p>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr><th>Name</th><th>Type</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td><code>customData?</code></td><td>undefined | object</td><td>Custom application-specific data to pass along with the request. (Currently Android only. On iOS <code>customData</code> will be ignored.)</td></tr>
 </tbody>
 </table>
 <p><strong>Returns:</strong> <em>Promise‹void›</em></p>
@@ -341,4 +371,4 @@
 </tbody>
 </table>
 <p><strong>Returns:</strong> <em>Promise‹void›</em></p>
-</span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/api/classes/castsession"><span class="arrow-prev">← </span><span class="function-name-prevnext">CastSession</span></a><a class="docs-next button" href="/docs/api/classes/sessionmanager"><span class="function-name-prevnext">SessionManager</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#hierarchy">Hierarchy</a></li><li><a href="#index">Index</a><ul class="toc-headings"><li><a href="#methods">Methods</a></li></ul></li><li><a href="#methods-1">Methods</a><ul class="toc-headings"><li><a href="#getmediastatus">getMediaStatus</a></li><li><a href="#loadmedia">loadMedia</a></li><li><a href="#onmediaplaybackended">onMediaPlaybackEnded</a></li><li><a href="#onmediaplaybackstarted">onMediaPlaybackStarted</a></li><li><a href="#onmediastatusupdated">onMediaStatusUpdated</a></li><li><a href="#pause">pause</a></li><li><a href="#play">play</a></li><li><a href="#queueinsertandplayitem">queueInsertAndPlayItem</a></li><li><a href="#queueinsertitem">queueInsertItem</a></li><li><a href="#queueinsertitems">queueInsertItems</a></li><li><a href="#seek">seek</a></li><li><a href="#setactivemediatracks">setActiveMediaTracks</a></li><li><a href="#setplaybackrate">setPlaybackRate</a></li><li><a href="#setstreammuted">setStreamMuted</a></li><li><a href="#setstreamvolume">setStreamVolume</a></li><li><a href="#settexttrackstyle">setTextTrackStyle</a></li><li><a href="#stop">stop</a></li></ul></li></ul></nav></div></div></body></html>
+</span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/api/classes/castsession"><span class="arrow-prev">← </span><span class="function-name-prevnext">CastSession</span></a><a class="docs-next button" href="/docs/api/classes/sessionmanager"><span class="function-name-prevnext">SessionManager</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#hierarchy">Hierarchy</a></li><li><a href="#index">Index</a><ul class="toc-headings"><li><a href="#methods">Methods</a></li></ul></li><li><a href="#methods-1">Methods</a><ul class="toc-headings"><li><a href="#getmediastatus">getMediaStatus</a></li><li><a href="#loadmedia">loadMedia</a></li><li><a href="#onmediaplaybackended">onMediaPlaybackEnded</a></li><li><a href="#onmediaplaybackstarted">onMediaPlaybackStarted</a></li><li><a href="#onmediastatusupdated">onMediaStatusUpdated</a></li><li><a href="#pause">pause</a></li><li><a href="#play">play</a></li><li><a href="#queueinsertandplayitem">queueInsertAndPlayItem</a></li><li><a href="#queueinsertitem">queueInsertItem</a></li><li><a href="#queueinsertitems">queueInsertItems</a></li><li><a href="#queuenext">queueNext</a></li><li><a href="#queueprev">queuePrev</a></li><li><a href="#seek">seek</a></li><li><a href="#setactivemediatracks">setActiveMediaTracks</a></li><li><a href="#setplaybackrate">setPlaybackRate</a></li><li><a href="#setstreammuted">setStreamMuted</a></li><li><a href="#setstreamvolume">setStreamVolume</a></li><li><a href="#settexttrackstyle">setTextTrackStyle</a></li><li><a href="#stop">stop</a></li></ul></li></ul></nav></div></div></body></html>
