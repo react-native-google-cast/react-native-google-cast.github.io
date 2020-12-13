@@ -71,7 +71,7 @@ GCKCastOptions* options = [[GCKCastOptions alloc] initWithDiscoveryCriteria:crit
 <span class="hljs-tag">&lt;<span class="hljs-name">key</span>&gt;</span>NSLocalNetworkUsageDescription<span class="hljs-tag">&lt;/<span class="hljs-name">key</span>&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">string</span>&gt;</span>${PRODUCT_NAME} uses the local network to discover Cast-enabled devices on your WiFi network.<span class="hljs-tag">&lt;/<span class="hljs-name">string</span>&gt;</span>
 </code></pre>
-<p>Make sure to replace <code>ABCD1234</code> with your receiver app id. If using the default receiver, you may delete that row.</p>
+<p>Make sure to replace <code>ABCD1234</code> with your receiver app id. If using the default receiver, you may delete that line.</p>
 <p>You may also customize the local network usage description.</p>
 <p>Furthermore, a dialog asking the user for the local network permission will now be displayed immediately when the app is opened. If you want to wait before showing the dialog until the user taps the Cast button, disable autostart in <code>AppDelegate.m</code>:</p>
 <pre><code class="hljs css language-obj-c">options.disableDiscoveryAutostart = <span class="hljs-literal">true</span>;
@@ -86,12 +86,13 @@ GCKCastOptions* options = [[GCKCastOptions alloc] initWithDiscoveryCriteria:crit
 <span class="hljs-tag">&lt;<span class="hljs-name">string</span>&gt;</span>${PRODUCT_NAME} uses microphone access to listen for ultrasonic tokens
 when pairing with nearby Cast devices.<span class="hljs-tag">&lt;/<span class="hljs-name">string</span>&gt;</span>
 </code></pre>
+<p>Also make sure you've installed guest mode in step 2 of the <a href="installation#ios">Installation</a>.</p>
 <p>The <a href="https://developers.google.com/cast/docs/guest_mode">official Guest Mode documentation</a> explains how guest mode works. Note that most use cases work fine without guest mode so you may decide you don't need it if it's not worth asking for the extra privacy permissions.</p></li>
 </ol>
 <h2><a class="anchor" aria-hidden="true" id="android"></a><a href="#android" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Android</h2>
 <ol>
 <li><p>Make sure the device you're using (also applies to emulators) has Google Play Services installed.</p></li>
-<li><p>Add to <code>AndroidManifest.xml</code></p>
+<li><p>Add to <code>AndroidManifest.xml</code> (in <code>android/app/src/main</code>):</p>
 <pre><code class="hljs css language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">application</span> <span class="hljs-attr">...</span>&gt;</span>
   ...
   <span class="hljs-tag">&lt;<span class="hljs-name">meta-data</span>
@@ -120,13 +121,15 @@ when pairing with nearby Cast devices.<span class="hljs-tag">&lt;/<span class="h
   <span class="hljs-attr">android:name</span>=<span class="hljs-string">"com.google.android.gms.cast.framework.OPTIONS_PROVIDER_CLASS_NAME"</span>
   <span class="hljs-attr">android:value</span>=<span class="hljs-string">"com.foo.GoogleCastOptionsProvider"</span> /&gt;</span>
 </code></pre></li>
-<li><p>⚠️ In your <code>MainActivity</code>, initialize CastContext by overriding the <code>onCreate</code> method.</p>
-<pre><code class="hljs css language-java">...
+<li><p>In your <code>MainActivity.java</code>, initialize CastContext by overriding the <code>onCreate</code> method.</p>
+<pre><code class="hljs css language-java"><span class="hljs-comment">// ...</span>
 <span class="hljs-keyword">import</span> android.os.Bundle;
 <span class="hljs-keyword">import</span> androidx.annotation.Nullable;
 <span class="hljs-keyword">import</span> com.google.android.gms.cast.framework.CastContext;
 
 <span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MainActivity</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">ReactActivity</span> </span>{
+  <span class="hljs-comment">// ...</span>
+
   <span class="hljs-meta">@Override</span>
   <span class="hljs-function"><span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onCreate</span><span class="hljs-params">(@Nullable Bundle savedInstanceState)</span> </span>{
     <span class="hljs-keyword">super</span>.onCreate(savedInstanceState);
@@ -134,12 +137,10 @@ when pairing with nearby Cast devices.<span class="hljs-tag">&lt;/<span class="h
     <span class="hljs-comment">// lazy load Google Cast context</span>
     CastContext.getSharedInstance(<span class="hljs-keyword">this</span>);
   }
-
-  ...
 }
 </code></pre>
 <p>This works if you're extending <code>ReactActivity</code> (or <code>NavigationActivity</code> if you're using react-native-navigation). If you're extending a different activity, make sure it is a descendant of <code>androidx.appcompat.app.AppCompatActivity</code>.</p></li>
 </ol>
 <h2><a class="anchor" aria-hidden="true" id="chrome"></a><a href="#chrome" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Chrome</h2>
 <p>Not supported yet</p>
-</span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/getting-started/installation"><span class="arrow-prev">← </span><span>Installation</span></a><a class="docs-next button" href="/docs/getting-started/media-tracks"><span>Next</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#ios">iOS</a></li><li><a href="#android">Android</a></li><li><a href="#chrome">Chrome</a></li></ul></nav></div></div></body></html>
+</span></div></article></div><div class="docLastUpdate"><em>Last updated on 12/13/2020 by Petr Bela</em></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/getting-started/installation"><span class="arrow-prev">← </span><span>Installation</span></a><a class="docs-next button" href="/docs/getting-started/usage"><span>Usage</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#ios">iOS</a></li><li><a href="#android">Android</a></li><li><a href="#chrome">Chrome</a></li></ul></nav></div></div></body></html>
