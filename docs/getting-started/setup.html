@@ -73,10 +73,14 @@ GCKCastOptions* options = [[GCKCastOptions alloc] initWithDiscoveryCriteria:crit
 </code></pre>
 <p>Make sure to replace <code>ABCD1234</code> with your receiver app id. If using the default receiver, you may delete that line.</p>
 <p>You may also customize the local network usage description.</p>
-<p>Furthermore, a dialog asking the user for the local network permission will now be displayed immediately when the app is opened. If you want to wait before showing the dialog until the user taps the Cast button, disable autostart in <code>AppDelegate.m</code>:</p>
+<p>Furthermore, a dialog asking the user for the local network permission will now be displayed immediately when the app is opened.</p></li>
+<li><p>(Optional iOS 14+) If you want to wait before showing the dialog from step 3 until the user taps the Cast button, disable autostart in <code>AppDelegate.m</code>:</p>
 <pre><code class="hljs css language-obj-c">options.disableDiscoveryAutostart = <span class="hljs-literal">true</span>;
 <span class="hljs-meta"># insert before [GCKCastContext setSharedInstanceWithOptions:options];</span>
-</code></pre></li>
+</code></pre>
+<blockquote>
+<p>Note: If you disable discovery autostart, you'll need to start it later by calling <code>CastContext.startDiscovery()</code> (note that this is not implemented yet but will be added before v4 gets of beta).</p>
+</blockquote></li>
 <li><p>If using iOS 13+ and you need <a href="https://developers.google.com/cast/docs/ios_sender/ios_permissions_changes#ios_13">guest mode support</a>, add</p>
 <pre><code class="hljs css language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">key</span>&gt;</span>NSBluetoothAlwaysUsageDescription<span class="hljs-tag">&lt;/<span class="hljs-name">key</span>&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">string</span>&gt;</span>${PRODUCT_NAME} uses Bluetooth to discover nearby Cast devices.<span class="hljs-tag">&lt;/<span class="hljs-name">string</span>&gt;</span>
