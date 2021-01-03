@@ -18,6 +18,7 @@
 <li><a href="/docs/api/classes/castchannel">CastChannel</a></li>
 <li><a href="/docs/api/classes/castcontext">CastContext</a></li>
 <li><a href="/docs/api/classes/castsession">CastSession</a></li>
+<li><a href="/docs/api/classes/discoverymanager">DiscoveryManager</a></li>
 <li><a href="/docs/api/classes/remotemediaclient">RemoteMediaClient</a></li>
 <li><a href="/docs/api/classes/sessionmanager">SessionManager</a></li>
 </ul>
@@ -69,8 +70,8 @@
 <p>• <strong>manager</strong>: <em><a href="/docs/api/classes/sessionmanager">SessionManager</a>‹›</em> = new SessionManager()</p>
 <h2><a class="anchor" aria-hidden="true" id="functions-1"></a><a href="#functions-1" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Functions</h2>
 <h3><a class="anchor" aria-hidden="true" id="usecastchannel"></a><a href="#usecastchannel" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>useCastChannel</h3>
-<p>▸ <strong>useCastChannel</strong>(<code>namespace</code>: string, <code>onMessage?</code>: undefined | function): <em>undefined | <a href="/docs/api/classes/castchannel">CastChannel</a>‹›</em></p>
-<p>Hook that provides the current <a href="/docs/api/classes/castchannel">CastChannel</a> (may be <code>undefined</code>).</p>
+<p>▸ <strong>useCastChannel</strong>(<code>namespace</code>: string, <code>onMessage?</code>: undefined | function): <em><a href="/docs/api/classes/castchannel">CastChannel</a> | null</em></p>
+<p>Hook that provides the current <a href="/docs/api/classes/castchannel">CastChannel</a> (may be <code>null</code>).</p>
 <p><strong><code>example</code></strong></p>
 <pre><code class="hljs css language-js"><span class="hljs-keyword">import</span> { useCastChannel } <span class="hljs-keyword">from</span> <span class="hljs-string">'react-native-google-cast'</span>
 
@@ -98,10 +99,10 @@
 <tr><td><code>onMessage?</code></td><td>undefined | function</td></tr>
 </tbody>
 </table>
-<p><strong>Returns:</strong> <em>undefined | <a href="/docs/api/classes/castchannel">CastChannel</a>‹›</em></p>
+<p><strong>Returns:</strong> <em><a href="/docs/api/classes/castchannel">CastChannel</a> | null</em></p>
 <hr>
 <h3><a class="anchor" aria-hidden="true" id="usecastsession"></a><a href="#usecastsession" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>useCastSession</h3>
-<p>▸ <strong>useCastSession</strong>(): <em>null | <a href="/docs/api/classes/castsession">CastSession</a>‹›</em></p>
+<p>▸ <strong>useCastSession</strong>(): <em><a href="/docs/api/classes/castsession">CastSession</a> | null</em></p>
 <p>Hook that provides the current <a href="/docs/api/classes/castsession">CastSession</a> (may be <code>null</code>).</p>
 <p><strong><code>example</code></strong></p>
 <pre><code class="hljs css language-js"><span class="hljs-keyword">import</span> { useCastSession } <span class="hljs-keyword">from</span> <span class="hljs-string">'react-native-google-cast'</span>
@@ -114,7 +115,7 @@
   }
 }
 </code></pre>
-<p><strong>Returns:</strong> <em>null | <a href="/docs/api/classes/castsession">CastSession</a>‹›</em></p>
+<p><strong>Returns:</strong> <em><a href="/docs/api/classes/castsession">CastSession</a> | null</em></p>
 <hr>
 <h3><a class="anchor" aria-hidden="true" id="usecaststate"></a><a href="#usecaststate" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>useCastState</h3>
 <p>▸ <strong>useCastState</strong>(): <em>undefined | <a href="/docs/api/enums/caststate#no_devices_available">NO_DEVICES_AVAILABLE</a> | <a href="/docs/api/enums/caststate#not_connected">NOT_CONNECTED</a> | <a href="/docs/api/enums/caststate#connecting">CONNECTING</a> | <a href="/docs/api/enums/caststate#connected">CONNECTED</a></em></p>
