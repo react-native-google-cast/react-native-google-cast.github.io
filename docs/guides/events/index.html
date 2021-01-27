@@ -79,8 +79,11 @@ listener.remove()
 })
 </code></pre>
 <p>For a full list of events see <a href="../api/classes/sessionmanager">SessionManager</a>.</p>
-<h2><a class="anchor" aria-hidden="true" id="client-events"></a><a href="#client-events" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Client Events</h2>
-<p><a href="../api/classes/remotemediaclient">RemoteMediaClient</a> controls media playback on a Cast receiver.</p>
+<h2><a class="anchor" aria-hidden="true" id="media-status-events"></a><a href="#media-status-events" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Media Status Events</h2>
+<p>When multiple senders are connected to the same receiver, it is important for each sender to be aware of the changes in the receiver even if those changes were initiated from other senders.</p>
+<blockquote>
+<p>Note: This is important for all apps, not only those that explicitly support multiple senders, because some Cast devices have control inputs (remotes, buttons) that behave as virtual senders, affecting the status on the receiver.</p>
+</blockquote>
 <pre><code class="hljs css language-js"><span class="hljs-comment">// Status of the media has changed. The `mediaStatus` object contains the new status.</span>
 client.onMediaStatusUpdated(<span class="hljs-function">(<span class="hljs-params">mediaStatus</span>) =&gt;</span> {})
 
@@ -96,7 +99,7 @@ client.onMediaPlaybackEnded(<span class="hljs-function">(<span class="hljs-param
 <blockquote>
 <p>* Note that the Cast device doesn't notify of the stream position in real-time. Hence, the stream position is an approximation as calculated from the last received stream information and the elapsed wall-time since that update. In practice, you should be seeing a close-enough estimate but it might be slightly delayed compared to the actual stream.</p>
 </blockquote>
-</span></div></article></div><div class="docLastUpdate"><em>Last updated on 12/13/2020 by Petr Bela</em></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/guides/customize-ui"><span class="arrow-prev">← </span><span>Customize UI</span></a><a class="docs-next button" href="/docs/guides/hooks"><span>Hooks</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#cast-state-events">Cast State Events</a></li><li><a href="#session-events">Session Events</a></li><li><a href="#client-events">Client Events</a></li></ul></nav></div></div><script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script><script>
+</span></div></article></div><div class="docLastUpdate"><em>Last updated on 1/27/2021 by Petr Bela</em></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/guides/customize-ui"><span class="arrow-prev">← </span><span>Customize UI</span></a><a class="docs-next button" href="/docs/guides/hooks"><span>Hooks</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#cast-state-events">Cast State Events</a></li><li><a href="#session-events">Session Events</a></li><li><a href="#media-status-events">Media Status Events</a></li></ul></nav></div></div><script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script><script>
                 document.addEventListener('keyup', function(e) {
                   if (e.target !== document.body) {
                     return;

@@ -90,6 +90,7 @@
 <li><a href="/docs/api/classes/remotemediaclient#queueprev">queuePrev</a></li>
 <li><a href="/docs/api/classes/remotemediaclient#seek">seek</a></li>
 <li><a href="/docs/api/classes/remotemediaclient#setactivemediatracks">setActiveMediaTracks</a></li>
+<li><a href="/docs/api/classes/remotemediaclient#setactivetrackids">setActiveTrackIds</a></li>
 <li><a href="/docs/api/classes/remotemediaclient#setplaybackrate">setPlaybackRate</a></li>
 <li><a href="/docs/api/classes/remotemediaclient#setstreammuted">setStreamMuted</a></li>
 <li><a href="/docs/api/classes/remotemediaclient#setstreamvolume">setStreamVolume</a></li>
@@ -330,6 +331,20 @@
 <hr>
 <h3><a class="anchor" aria-hidden="true" id="setactivemediatracks"></a><a href="#setactivemediatracks" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>setActiveMediaTracks</h3>
 <p>▸ <strong>setActiveMediaTracks</strong>(<code>trackIds?</code>: number[]): <em>Promise‹void›</em></p>
+<p><strong><code>deprecated</code></strong> Use <code>setActiveTrackIds</code> instead.</p>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr><th>Name</th><th>Type</th></tr>
+</thead>
+<tbody>
+<tr><td><code>trackIds?</code></td><td>number[]</td></tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong> <em>Promise‹void›</em></p>
+<hr>
+<h3><a class="anchor" aria-hidden="true" id="setactivetrackids"></a><a href="#setactivetrackids" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>setActiveTrackIds</h3>
+<p>▸ <strong>setActiveTrackIds</strong>(<code>trackIds?</code>: number[]): <em>Promise‹void›</em></p>
 <p>Sets the active media tracks.</p>
 <p>The request will fail if there is no current media status.</p>
 <p><strong>Parameters:</strong></p>
@@ -338,7 +353,7 @@
 <tr><th>Name</th><th>Type</th><th>Description</th></tr>
 </thead>
 <tbody>
-<tr><td><code>trackIds?</code></td><td>number[]</td><td>The media track IDs. If <code>undefined</code> or an empty array, the current set of active trackIds will be removed.</td></tr>
+<tr><td><code>trackIds?</code></td><td>number[]</td><td>The media track IDs. If <code>undefined</code> or an empty array, the current set of active trackIds will be removed, and default ones will be used instead.</td></tr>
 </tbody>
 </table>
 <p><strong>Returns:</strong> <em>Promise‹void›</em></p>
@@ -383,7 +398,7 @@
 <tr><th>Name</th><th>Type</th><th>Description</th></tr>
 </thead>
 <tbody>
-<tr><td><code>volume</code></td><td>number</td><td>-</td></tr>
+<tr><td><code>volume</code></td><td>number</td><td>The new volume, between <code>0.0</code> and <code>1.0</code>.</td></tr>
 <tr><td><code>customData?</code></td><td>undefined | object</td><td>Custom application-specific data to pass along with the request.</td></tr>
 </tbody>
 </table>
@@ -418,7 +433,7 @@
 </tbody>
 </table>
 <p><strong>Returns:</strong> <em>Promise‹void›</em></p>
-</span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/api/classes/discoverymanager"><span class="arrow-prev">← </span><span class="function-name-prevnext">DiscoveryManager</span></a><a class="docs-next button" href="/docs/api/classes/sessionmanager"><span class="function-name-prevnext">SessionManager</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#hierarchy">Hierarchy</a></li><li><a href="#index">Index</a><ul class="toc-headings"><li><a href="#properties">Properties</a></li><li><a href="#methods">Methods</a></li></ul></li><li><a href="#properties-1">Properties</a><ul class="toc-headings"><li><a href="#private-optional-progressupdatelistener"><code>Private</code> <code>Optional</code> progressUpdateListener</a></li></ul></li><li><a href="#methods-1">Methods</a><ul class="toc-headings"><li><a href="#getmediastatus">getMediaStatus</a></li><li><a href="#getstreamposition">getStreamPosition</a></li><li><a href="#loadmedia">loadMedia</a></li><li><a href="#onmediaplaybackended">onMediaPlaybackEnded</a></li><li><a href="#onmediaplaybackstarted">onMediaPlaybackStarted</a></li><li><a href="#onmediaprogressupdated">onMediaProgressUpdated</a></li><li><a href="#onmediastatusupdated">onMediaStatusUpdated</a></li><li><a href="#pause">pause</a></li><li><a href="#play">play</a></li><li><a href="#queueinsertandplayitem">queueInsertAndPlayItem</a></li><li><a href="#queueinsertitem">queueInsertItem</a></li><li><a href="#queueinsertitems">queueInsertItems</a></li><li><a href="#queuenext">queueNext</a></li><li><a href="#queueprev">queuePrev</a></li><li><a href="#seek">seek</a></li><li><a href="#setactivemediatracks">setActiveMediaTracks</a></li><li><a href="#setplaybackrate">setPlaybackRate</a></li><li><a href="#setstreammuted">setStreamMuted</a></li><li><a href="#setstreamvolume">setStreamVolume</a></li><li><a href="#settexttrackstyle">setTextTrackStyle</a></li><li><a href="#stop">stop</a></li></ul></li></ul></nav></div></div><script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script><script>
+</span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/api/classes/discoverymanager"><span class="arrow-prev">← </span><span class="function-name-prevnext">DiscoveryManager</span></a><a class="docs-next button" href="/docs/api/classes/sessionmanager"><span class="function-name-prevnext">SessionManager</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#hierarchy">Hierarchy</a></li><li><a href="#index">Index</a><ul class="toc-headings"><li><a href="#properties">Properties</a></li><li><a href="#methods">Methods</a></li></ul></li><li><a href="#properties-1">Properties</a><ul class="toc-headings"><li><a href="#private-optional-progressupdatelistener"><code>Private</code> <code>Optional</code> progressUpdateListener</a></li></ul></li><li><a href="#methods-1">Methods</a><ul class="toc-headings"><li><a href="#getmediastatus">getMediaStatus</a></li><li><a href="#getstreamposition">getStreamPosition</a></li><li><a href="#loadmedia">loadMedia</a></li><li><a href="#onmediaplaybackended">onMediaPlaybackEnded</a></li><li><a href="#onmediaplaybackstarted">onMediaPlaybackStarted</a></li><li><a href="#onmediaprogressupdated">onMediaProgressUpdated</a></li><li><a href="#onmediastatusupdated">onMediaStatusUpdated</a></li><li><a href="#pause">pause</a></li><li><a href="#play">play</a></li><li><a href="#queueinsertandplayitem">queueInsertAndPlayItem</a></li><li><a href="#queueinsertitem">queueInsertItem</a></li><li><a href="#queueinsertitems">queueInsertItems</a></li><li><a href="#queuenext">queueNext</a></li><li><a href="#queueprev">queuePrev</a></li><li><a href="#seek">seek</a></li><li><a href="#setactivemediatracks">setActiveMediaTracks</a></li><li><a href="#setactivetrackids">setActiveTrackIds</a></li><li><a href="#setplaybackrate">setPlaybackRate</a></li><li><a href="#setstreammuted">setStreamMuted</a></li><li><a href="#setstreamvolume">setStreamVolume</a></li><li><a href="#settexttrackstyle">setTextTrackStyle</a></li><li><a href="#stop">stop</a></li></ul></li></ul></nav></div></div><script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script><script>
                 document.addEventListener('keyup', function(e) {
                   if (e.target !== document.body) {
                     return;
