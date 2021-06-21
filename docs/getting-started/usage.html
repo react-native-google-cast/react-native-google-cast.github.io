@@ -51,70 +51,29 @@
               }
             });
         </script></nav></div><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle">Usage</h1></header><article><div><span><p>First, render the Cast button which handles session and enables users to connect to Cast devices:</p>
-<pre><code class="hljs css language-ts"><span class="hljs-keyword">import</span> { CastButton } <span class="hljs-keyword">from</span> <span class="hljs-string">'react-native-google-cast'</span>
+<pre><code class="hljs css language-ts"><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>
+<span class="hljs-keyword">import</span> { CastButton, useRemoteMediaClient } <span class="hljs-keyword">from</span> <span class="hljs-string">'react-native-google-cast'</span>
 
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">MyComponent</span>(<span class="hljs-params"></span>) </span>{
-  <span class="hljs-keyword">return</span> &lt;CastButton style={{ width: <span class="hljs-number">24</span>, height: <span class="hljs-number">24</span> }} /&gt;
-}
-</code></pre>
-<p>To stream media to the connected cast device, you first need to get the current media client:</p>
-<ul>
-<li><p>either using hooks:</p>
-<pre><code class="hljs css language-ts"><span class="hljs-keyword">import</span> { useRemoteMediaClient } <span class="hljs-keyword">from</span> <span class="hljs-string">'react-native-google-cast'</span>
-
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">MyComponent</span>(<span class="hljs-params"></span>) </span>{
-  <span class="hljs-comment">// this will automatically rerender when client is connected</span>
+  <span class="hljs-comment">// This will automatically rerender when client is connected to a device</span>
+  <span class="hljs-comment">// (after pressing the button that's rendered below)</span>
   <span class="hljs-keyword">const</span> client = useRemoteMediaClient()
 
   <span class="hljs-keyword">if</span> (client) {
-    <span class="hljs-comment">// ...</span>
+    <span class="hljs-comment">// Send the media to your Cast device as soon as we connect to a device</span>
+    <span class="hljs-comment">// (though you'll probably want to call this later once user clicks on a video or something)</span>
+    client.loadMedia({
+      mediaInfo: {
+        contentUrl:
+          <span class="hljs-string">'https://commondatastorage.googleapis.com/gtv-videos-bucket/CastVideos/mp4/BigBuckBunny.mp4'</span>,
+      },
+    })
   }
+
+  <span class="hljs-comment">// This will render native Cast button.</span>
+  <span class="hljs-comment">// When a user presses it, a Cast dialog will prompt them to select a Cast device to connect to.</span>
+  <span class="hljs-keyword">return</span> &lt;CastButton style={{ width: <span class="hljs-number">24</span>, height: <span class="hljs-number">24</span> }} /&gt;
 }
-</code></pre></li>
-<li><p>or using classes:</p>
-<pre><code class="hljs css language-ts"><span class="hljs-keyword">import</span> { SessionManager } <span class="hljs-keyword">from</span> <span class="hljs-string">'react-native-google-cast'</span>
-
-<span class="hljs-keyword">class</span> MyComponent <span class="hljs-keyword">extends</span> React.Component {
-  manager = <span class="hljs-keyword">new</span> SessionManager()
-  state = {}
-
-  <span class="hljs-comment">// note that unlike hooks, you'll need to use events to monitor when the client is connected</span>
-  componentDidMount() {
-    <span class="hljs-keyword">this</span>.startedListener = manager.onSessionStarted(<span class="hljs-function">(<span class="hljs-params">session</span>) =&gt;</span>
-      <span class="hljs-keyword">this</span>.setState({ client: session.client })
-    )
-    <span class="hljs-keyword">this</span>.resumedListener = manager.onSessionResumed(<span class="hljs-function">(<span class="hljs-params">session</span>) =&gt;</span>
-      <span class="hljs-keyword">this</span>.setState({ client: session.client })
-    )
-    <span class="hljs-keyword">this</span>.suspendedListener = manager.onSessionSuspended(<span class="hljs-function">(<span class="hljs-params">session</span>) =&gt;</span>
-      <span class="hljs-keyword">this</span>.setState({ client: <span class="hljs-literal">undefined</span> })
-    )
-    <span class="hljs-keyword">this</span>.endingListener = manager.onSessionEnding(<span class="hljs-function">(<span class="hljs-params">session</span>) =&gt;</span>
-      <span class="hljs-keyword">this</span>.setState({ client: <span class="hljs-literal">undefined</span> })
-    )
-  }
-  componentWillUnmount() {
-    <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>.startedListener) <span class="hljs-keyword">this</span>.startedListener.remove()
-    <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>.resumedListener) <span class="hljs-keyword">this</span>.resumedListener.remove()
-    <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>.suspendedListener) <span class="hljs-keyword">this</span>.suspendedListener.remove()
-    <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>.endingListener) <span class="hljs-keyword">this</span>.endingListener.remove()
-  }
-
-  render() {
-    <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>.state.client) {
-      <span class="hljs-comment">// ...</span>
-    }
-  }
-}
-</code></pre></li>
-</ul>
-<p>Once you have the <code>client</code>, you can cast media by calling the <code>loadMedia</code> method:</p>
-<pre><code class="hljs css language-ts">client.loadMedia({
-  mediaInfo: {
-    contentUrl:
-      <span class="hljs-string">'https://commondatastorage.googleapis.com/gtv-videos-bucket/CastVideos/mp4/BigBuckBunny.mp4'</span>,
-  },
-})
 </code></pre>
 <p>You can provide many different attributes, such as in this example:</p>
 <pre><code class="hljs css language-ts">client.loadMedia({
