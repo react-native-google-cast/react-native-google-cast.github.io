@@ -82,7 +82,7 @@ GCKCastOptions* options = [[GCKCastOptions alloc] initWithDiscoveryCriteria:crit
 <span class="hljs-tag">&lt;<span class="hljs-name">string</span>&gt;</span>${PRODUCT_NAME} uses the local network to discover Cast-enabled devices on your WiFi network.<span class="hljs-tag">&lt;/<span class="hljs-name">string</span>&gt;</span>
 </code></pre>
 <p>If using a custom receiver, make sure to replace <code>CC1AD845</code> with your custom receiver app id.</p>
-<p>You may also customize the local network usage description.</p>
+<p>You may also customize the local network usage description (See <a href="https://github.com/react-native-google-cast/react-native-google-cast/issues/355#issuecomment-906520304">#355</a>).</p>
 <p>Furthermore, a dialog asking the user for the local network permission will now be displayed immediately when the app is opened.</p></li>
 <li><p>(Optional iOS 14+) By default, Cast device discovery is initiated when the user taps the Cast button. If it's the first time, the local network access interstitial will appear, followed by the iOS Local Network Access permissions dialog.</p>
 <p>You may <a href="https://developers.google.com/cast/docs/ios_sender/ios_permissions_changes#customizations">customize this behavior</a> in <code>AppDelegate.m</code> by either:</p>
@@ -160,8 +160,8 @@ when pairing with nearby Cast devices.<span class="hljs-tag">&lt;/<span class="h
                 });
               </script><script>
               var search = docsearch({
-                
-                apiKey: 'e0981b2532b8d93a84792caba3421982',
+                appId: 'Z8T26VVKX3',
+                apiKey: '94516bdfb885f50b966befd2235b77a9',
                 indexName: 'react-native-google-cast',
                 inputSelector: '#search_input_react',
                 algoliaOptions: {"facetFilters":["language:en"]}

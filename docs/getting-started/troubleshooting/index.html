@@ -53,11 +53,13 @@
         </script></nav></div><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle">Troubleshooting</h1></header><article><div><span><h2><a class="anchor" aria-hidden="true" id="can-t-see-cast-button-no-cast-devices-available"></a><a href="#can-t-see-cast-button-no-cast-devices-available" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Can't see Cast Button / No Cast Devices Available</h2>
 <p>This is by far the most common problem with this library. Before creating an issue, please read through this list of known solutions to see if anything helps:</p>
 <ul>
+<li><p>Try the Google Home, YouTube, or another Cast-enabled app to make sure they can see the Cast device you're trying to connect to.</p></li>
 <li><p>Make sure you've completed all the steps in <a href="./installation">Installation</a> and <a href="./setup">Setup</a>.</p></li>
 <li><p>Read through <a href="https://developers.google.com/cast/docs/discovery">Discovery Troubleshooting</a> in the Google Cast documentation.</p></li>
 <li><p>If using a custom receiver application in the <a href="https://cast.google.com/publish">Google Cast SDK Developer Console</a> that's Unpublished, make sure you register your device in the <strong>Cast Receiver Devices</strong>. Once you do that, you need to wait about 15 minutes and then restart your Cast device.</p></li>
 <li><p>Check the Debug log in Xcode or Android Studio for any warnings and errors.</p></li>
 <li><p>(Android) Make sure the device has Google Play Services available and that you initialize <code>CastContext.getSharedInstance(this);</code> in your <code>MainActivity</code>'s <code>onCreate</code>.</p></li>
+<li><p>(Android) If using an emulator, due to it running as a virtual machine with its own network, you might need to configure NAT for the virtual device. If you cannot see any Cast devices on the emulator, please test with a real Android device before reporting an issue.</p></li>
 <li><p>(iOS) Make sure you've enabled the <strong>Access WiFi Information</strong> capability.</p></li>
 <li><p>(iOS) If you disabled discovery autostart in <a href="./setup#ios">iOS Setup</a>, make sure you call <a href="../api/classes/discoverymanager#startdiscovery">startDiscovery</a> somewhere in your JS code.</p></li>
 <li><p>(iOS 14+) Double check that you've configured Bonjour services in <code>Info.plist</code>.</p></li>
@@ -82,6 +84,7 @@ ld: <span class="hljs-number">7</span> duplicate symbols <span class="hljs-keywo
 clang: error: linker command failed with <span class="hljs-keyword">exit</span> code <span class="hljs-number">1</span> (use -v to see invocation)
 </code></pre>
 <p>This is caused by Google introducing a <a href="https://issuetracker.google.com/issues/113069508">dynamic SDK build in 4.3.1</a>. It seems to affects Google SDK versions 4.3.x - 4.4.x. Please upgrade to the latest SDK (4.5+) or use <code>react-native-google-cast/NoBluetooth</code>.</p></li>
+<li><p>(Android) Using <code>tools:node=&quot;replace&quot;</code> in AndroidManifest may cause media to not load on the Cast device <a href="https://github.com/react-native-google-cast/react-native-google-cast/issues/349">#349</a>. See <a href="https://github.com/firebase/quickstart-android/issues/477">firebase/quickstart-android#477</a> for options how to resolve this.</p></li>
 </ul>
 </span></div></article></div><div class="docLastUpdate"><em>Last updated on 2/26/2021 by Petr Bela</em></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/getting-started/usage"><span class="arrow-prev">← </span><span>Usage</span></a><a class="docs-next button" href="/docs/guides/custom-channels"><span>Custom Channels</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#can-t-see-cast-button-no-cast-devices-available">Can't see Cast Button / No Cast Devices Available</a></li><li><a href="#other-issues">Other Issues</a></li></ul></nav></div></div><script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script><script>
                 document.addEventListener('keyup', function(e) {
@@ -96,8 +99,8 @@ clang: error: linker command failed with <span class="hljs-keyword">exit</span> 
                 });
               </script><script>
               var search = docsearch({
-                
-                apiKey: 'e0981b2532b8d93a84792caba3421982',
+                appId: 'Z8T26VVKX3',
+                apiKey: '94516bdfb885f50b966befd2235b77a9',
                 indexName: 'react-native-google-cast',
                 inputSelector: '#search_input_react',
                 algoliaOptions: {"facetFilters":["language:en"]}
