@@ -53,20 +53,29 @@
         </script></nav></div><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle">Installation</h1></header><article><div><span><p><code>$ npm install react-native-google-cast --save</code></p>
 <p>or</p>
 <p><code>$ yarn add react-native-google-cast</code></p>
+<h2><a class="anchor" aria-hidden="true" id="expo"></a><a href="#expo" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Expo</h2>
+<p>Since Expo SDK 42, you can use this library in a custom-built Expo app.</p>
+<p>Simply follow instructions at <a href="https://github.com/expo/config-plugins/tree/master/packages/react-native-google-cast">@config-plugins/react-native-google-cast</a> which will take care of all the installation and setup steps.</p>
+<p>Then ignore the rest of this page and jump straight to <a href="usage">Usage</a>.</p>
 <h2><a class="anchor" aria-hidden="true" id="ios"></a><a href="#ios" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>iOS</h2>
-<p>If you're using RN &gt;= 0.60 and you're fine with default settings (without guest mode), you can just run <code>cd ios &amp;&amp; pod install</code>. Otherwise read below.</p>
+<p>If you're using RN &gt;= 0.60 and you're fine with default settings (without guest mode), you can just run <code>cd ios &amp;&amp; pod install</code>. Note that the latest Google Cast SDK (currently <a href="https://developers.google.com/cast/docs/release-notes#november-19,-2021">4.7.0</a>) only supports iOS 12 or newer.</p>
+<p>If you need to support iOS 10/11, or enable guest mode, read below.</p>
 <h4><a class="anchor" aria-hidden="true" id="using-cocoapods-rn-060-or-059-with-cocoapods"></a><a href="#using-cocoapods-rn-060-or-059-with-cocoapods" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Using CocoaPods (RN &gt;= 0.60, or &lt;= 0.59 with CocoaPods)</h4>
 <ol>
 <li><p>If you don't have <a href="https://cocoapods.org/">CocoaPods</a> set up yet (RN &lt;=0.59), follow instructions in the <a href="https://reactnative.dev/docs/integration-with-existing-apps#configuring-cocoapods-dependencies">react-native documentation</a>.</p></li>
 <li><p>In your <code>ios/Podfile</code>, add <strong>one</strong> of these snippets:</p>
 <ul>
 <li><p>If you <a href="https://developers.google.com/cast/docs/ios_sender/ios_permissions_changes#need_to_remove_guest_mode_support">don't need guest mode</a>, add</p>
-<pre><code class="hljs">pod <span class="hljs-string">'react-native-google-cast/NoBluetooth'</span>, <span class="hljs-string">path:</span> <span class="hljs-string">'../node_modules/react-native-google-cast/ios/'</span>
+<pre><code class="hljs">pod <span class="hljs-string">'react-native-google-cast/NoBluetooth'</span>, <span class="hljs-built_in">path</span>: <span class="hljs-string">'../node_modules/react-native-google-cast/ios/'</span>
 pod <span class="hljs-string">'google-cast-sdk-no-bluetooth'</span>
+# <span class="hljs-keyword">or</span> <span class="hljs-keyword">for</span> iOS <span class="hljs-number">10</span>/<span class="hljs-number">11</span> support
+# pod <span class="hljs-string">'google-cast-sdk-no-bluetooth'</span>, <span class="hljs-string">'4.6.1'</span>
 </code></pre></li>
 <li><p>If you <a href="https://developers.google.com/cast/docs/ios_sender/ios_permissions_changes#need_to_keep_guest_mode_support">want to support guest mode</a>, add</p>
-<pre><code class="hljs">pod <span class="hljs-string">'react-native-google-cast/GuestMode'</span>, <span class="hljs-string">path:</span> <span class="hljs-string">'../node_modules/react-native-google-cast/ios/'</span>
+<pre><code class="hljs">pod <span class="hljs-string">'react-native-google-cast/GuestMode'</span>, <span class="hljs-built_in">path</span>: <span class="hljs-string">'../node_modules/react-native-google-cast/ios/'</span>
 pod <span class="hljs-string">'google-cast-sdk'</span>
+# <span class="hljs-keyword">or</span> <span class="hljs-keyword">for</span> iOS <span class="hljs-number">10</span>/<span class="hljs-number">11</span> support
+# pod <span class="hljs-string">'google-cast-sdk'</span>, <span class="hljs-string">'4.6.1'</span>
 </code></pre>
 <p>To finish setting up guest mode, don't forget step 5 in the <a href="setup#ios">Setup</a>.</p></li>
 <li><p>If you want to link the Google Cast SDK manually, add this and follow <a href="https://developers.google.com/cast/docs/ios_sender#manual_setup">Manual Setup</a></p>
@@ -107,12 +116,12 @@ pod <span class="hljs-string">'google-cast-sdk'</span>
 <p>By default, the latest version (<code>+</code>) of the Cast SDK is used. To use a specific version, set it in the root <code>android/build.gradle</code>:</p>
 <pre><code class="hljs css language-java">buildscript {
   ext {
-    buildToolsVersion = <span class="hljs-string">"29.0.3"</span>
+    buildToolsVersion = <span class="hljs-string">"31.0.0"</span>
     minSdkVersion = <span class="hljs-number">16</span>
-    compileSdkVersion = <span class="hljs-number">29</span>
-    targetSdkVersion = <span class="hljs-number">29</span>
-    supportLibVersion = <span class="hljs-string">"29.0.0"</span>
-    castFrameworkVersion = <span class="hljs-string">"20.0.0"</span> <span class="hljs-comment">// &lt;-- Cast SDK version</span>
+    compileSdkVersion = <span class="hljs-number">31</span>
+    targetSdkVersion = <span class="hljs-number">31</span>
+    supportLibVersion = <span class="hljs-string">"31.0.0"</span>
+    castFrameworkVersion = <span class="hljs-string">"21.0.0"</span> <span class="hljs-comment">// &lt;-- Cast SDK version</span>
   }
 }
 </code></pre>
@@ -138,7 +147,7 @@ project(<span class="hljs-string">':react-native-google-cast'</span>).projectDir
 </ol>
 <h2><a class="anchor" aria-hidden="true" id="chrome"></a><a href="#chrome" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Chrome</h2>
 <p>Not supported yet</p>
-</span></div></article></div><div class="docLastUpdate"><em>Last updated on 6/21/2021 by Petr Bela</em></div><div class="docs-prevnext"><a class="docs-next button" href="/docs/getting-started/setup"><span>Setup</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#ios">iOS</a></li><li><a href="#android">Android</a></li><li><a href="#chrome">Chrome</a></li></ul></nav></div></div><script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script><script>
+</span></div></article></div><div class="docLastUpdate"><em>Last updated on 2/26/2022 by Petr Bela</em></div><div class="docs-prevnext"><a class="docs-next button" href="/docs/getting-started/setup"><span>Setup</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#expo">Expo</a></li><li><a href="#ios">iOS</a></li><li><a href="#android">Android</a></li><li><a href="#chrome">Chrome</a></li></ul></nav></div></div><script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script><script>
                 document.addEventListener('keyup', function(e) {
                   if (e.target !== document.body) {
                     return;
