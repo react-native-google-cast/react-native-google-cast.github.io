@@ -72,7 +72,7 @@
 
   <span class="hljs-comment">// This will render native Cast button.</span>
   <span class="hljs-comment">// When a user presses it, a Cast dialog will prompt them to select a Cast device to connect to.</span>
-  <span class="hljs-keyword">return</span> &lt;CastButton style={{ width: <span class="hljs-number">24</span>, height: <span class="hljs-number">24</span> }} /&gt;
+  <span class="hljs-keyword">return</span> &lt;CastButton style={{ width: <span class="hljs-number">24</span>, height: <span class="hljs-number">24</span>, tintColor: <span class="hljs-string">'black'</span> }} /&gt;
 }
 </code></pre>
 <p>You can provide many different attributes, such as in this example:</p>
@@ -84,8 +84,7 @@
     metadata: {
       images: [
         {
-          url:
-            <span class="hljs-string">'https://commondatastorage.googleapis.com/gtv-videos-bucket/CastVideos/images/480x270/BigBuckBunny.jpg'</span>,
+          url: <span class="hljs-string">'https://commondatastorage.googleapis.com/gtv-videos-bucket/CastVideos/images/480x270/BigBuckBunny.jpg'</span>,
         },
       ],
       title: <span class="hljs-string">'Big Buck Bunny'</span>,
