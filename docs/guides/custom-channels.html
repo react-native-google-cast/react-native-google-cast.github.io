@@ -59,6 +59,9 @@
 <pre><code class="hljs css language-ts"><span class="hljs-keyword">const</span> channel = castSession.addChannel(<span class="hljs-string">'urn:x-cast:...'</span>)
 </code></pre>
 <p>Or, if you're using hooks:</p>
+<blockquote>
+<p>Note that a channel with the same namespace can only be registered once at a time (you'd need to unregister previous one to create the same one again). If you need to access the channel from multiple screens, either move the call to their parent (e.g. navigator), or don't use the hook and instead call <code>addChannel</code> in a global store (e.g. Redux or Mobx). More info in <a href="https://github.com/react-native-google-cast/react-native-google-cast/issues/316#issuecomment-1065734844">issue #316</a>.</p>
+</blockquote>
 <pre><code class="hljs css language-ts"><span class="hljs-keyword">import</span> { useCastChannel } <span class="hljs-keyword">from</span> <span class="hljs-string">'react-native-google-cast'</span>
 
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">MyComponent</span>(<span class="hljs-params"></span>) </span>{
@@ -91,7 +94,7 @@ channel.offMessage()
 <pre><code class="hljs css language-ts">channel.remove()
 </code></pre>
 <p>Note that whenever the <code>castSession</code> is disconnected, the channel will also be removed.</p>
-</span></div></article></div><div class="docLastUpdate"><em>Last updated on 1/2/2021 by Petr Bela</em></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/getting-started/troubleshooting"><span class="arrow-prev">← </span><span>Troubleshooting</span></a><a class="docs-next button" href="/docs/guides/customize-ui"><span>Customize UI</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"></nav></div></div><script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script><script>
+</span></div></article></div><div class="docLastUpdate"><em>Last updated on 3/11/2022 by Petr Bela</em></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/getting-started/troubleshooting"><span class="arrow-prev">← </span><span>Troubleshooting</span></a><a class="docs-next button" href="/docs/guides/customize-ui"><span>Customize UI</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"></nav></div></div><script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script><script>
                 document.addEventListener('keyup', function(e) {
                   if (e.target !== document.body) {
                     return;
