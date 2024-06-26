@@ -53,12 +53,12 @@
         </script></nav></div><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle">Volume</h1></header><article><div><span><p>The Cast framework automatically manages the volume for the sender app and synchronizes the sender and receiver apps so that the sender UI always reports the volume specified by the receiver.</p>
 <p>On Android, physical button volume control is enabled automatically.</p>
 <p>On iOS, you need to enable it when initializing the cast context in <code>AppDelegate</code>:</p>
-</span></div><div class="tabs"><div class="nav-tabs"><div class="nav-link active" id="11-tab" data-group="group_10" data-tab="tabpanel_11">Objective-C</div><div class="nav-link" id="12-tab" data-group="group_10" data-tab="tabpanel_12">Swift</div></div><div class="tab-content"><div class="tab-pane active" data-group="group_10" tabindex="-1" id="tabpanel_11"><div><span><pre><code class="hljs css language-obj-c"><span class="hljs-comment">// insert this line</span>
+</span></div><div class="tabs"><div class="nav-tabs"><div class="nav-link active" id="5-tab" data-group="group_4" data-tab="tabpanel_5">Objective-C</div><div class="nav-link" id="6-tab" data-group="group_4" data-tab="tabpanel_6">Swift</div></div><div class="tab-content"><div class="tab-pane active" data-group="group_4" tabindex="-1" id="tabpanel_5"><div><span><pre><code class="hljs css language-obj-c"><span class="hljs-comment">// insert this line</span>
 options.physicalVolumeButtonsWillControlDeviceVolume = <span class="hljs-literal">true</span>;
 <span class="hljs-comment">// before</span>
 [GCKCastContext setSharedInstanceWithOptions:options];
 </code></pre>
-</span></div></div><div class="tab-pane" data-group="group_10" tabindex="-1" id="tabpanel_12"><div><span><pre><code class="hljs css language-swift"><span class="hljs-comment">// insert this line</span>
+</span></div></div><div class="tab-pane" data-group="group_4" tabindex="-1" id="tabpanel_6"><div><span><pre><code class="hljs css language-swift"><span class="hljs-comment">// insert this line</span>
 options.physicalVolumeButtonsWillControlDeviceVolume = <span class="hljs-literal">true</span>
 <span class="hljs-comment">// before</span>
 <span class="hljs-type">GCKCastContext</span>.setSharedInstanceWith(options)

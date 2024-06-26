@@ -54,26 +54,32 @@
 <p>If you're using Expo, follow instructions at <a href="https://github.com/expo/config-plugins/tree/master/packages/react-native-google-cast">@config-plugins/react-native-google-cast</a> and then continue to <a href="usage">Usage</a>.</p>
 <h2><a class="anchor" aria-hidden="true" id="ios"></a><a href="#ios" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>iOS</h2>
 <ol>
-<li>In <code>AppDelegate.m</code> (or <code>AppDelegate.swift</code>) add</li>
-</ol>
-</span></div><div class="tabs"><div class="nav-tabs"><div class="nav-link active" id="5-tab" data-group="group_4" data-tab="tabpanel_5">Objective-C</div><div class="nav-link" id="6-tab" data-group="group_4" data-tab="tabpanel_6">Swift</div></div><div class="tab-content"><div class="tab-pane active" data-group="group_4" tabindex="-1" id="tabpanel_5"><div><span><pre><code class="hljs css language-obj-c"><span class="hljs-meta">#import <span class="hljs-meta-string">&lt;GoogleCast/GoogleCast.h&gt;</span></span>
+<li><p>In <code>AppDelegate.m</code> (or <code>AppDelegate.swift</code>) add</p>
+   <!--DOCUSAURUS_CODE_TABS-->
+   <!--Swift-->
+<pre><code class="hljs css language-swift"><span class="hljs-keyword">import</span> GoogleCast
 </code></pre>
-</span></div></div><div class="tab-pane" data-group="group_4" tabindex="-1" id="tabpanel_6"><div><span><pre><code class="hljs css language-swift"><span class="hljs-keyword">import</span> GoogleCast
+   <!--Objective-C-->
+<pre><code class="hljs css language-obj-c"><span class="hljs-meta">#import <span class="hljs-meta-string">&lt;GoogleCast/GoogleCast.h&gt;</span></span>
 </code></pre>
-</span></div></div></div></div><div><span><p>and insert the following in the <code>application:didFinishLaunchingWithOptions</code> method, ideally at the beginning (or right after Flipper initialization):</p>
-</span></div><div class="tabs"><div class="nav-tabs"><div class="nav-link active" id="8-tab" data-group="group_7" data-tab="tabpanel_8">Objective-C</div><div class="nav-link" id="9-tab" data-group="group_7" data-tab="tabpanel_9">Swift</div></div><div class="tab-content"><div class="tab-pane active" data-group="group_7" tabindex="-1" id="tabpanel_8"><div><span><pre><code class="hljs css language-obj-c"><span class="hljs-built_in">NSString</span> *receiverAppID = kGCKDefaultMediaReceiverApplicationID; <span class="hljs-comment">// or @"ABCD1234"</span>
-GCKDiscoveryCriteria *criteria = [[GCKDiscoveryCriteria alloc] initWithApplicationID:receiverAppID];
-GCKCastOptions* options = [[GCKCastOptions alloc] initWithDiscoveryCriteria:criteria];
-[GCKCastContext setSharedInstanceWithOptions:options];
-</code></pre>
-</span></div></div><div class="tab-pane" data-group="group_7" tabindex="-1" id="tabpanel_9"><div><span><pre><code class="hljs css language-swift"><span class="hljs-keyword">let</span> receiverAppID = kGCKDefaultMediaReceiverApplicationID <span class="hljs-comment">// or "ABCD1234"</span>
+   <!--END_DOCUSAURUS_CODE_TABS-->
+<p>and insert the following in the <code>application:didFinishLaunchingWithOptions</code> method:</p>
+   <!--DOCUSAURUS_CODE_TABS-->
+   <!--Swift-->
+<pre><code class="hljs css language-swift"><span class="hljs-keyword">let</span> receiverAppID = kGCKDefaultMediaReceiverApplicationID <span class="hljs-comment">// or "ABCD1234"</span>
 <span class="hljs-keyword">let</span> criteria = <span class="hljs-type">GCKDiscoveryCriteria</span>(applicationID: receiverAppID)
 <span class="hljs-keyword">let</span> options = <span class="hljs-type">GCKCastOptions</span>(discoveryCriteria: criteria)
 <span class="hljs-type">GCKCastContext</span>.setSharedInstanceWith(options)
 </code></pre>
-</span></div></div></div></div><div><span><p>If using a custom receiver, replace <code>kGCKDefaultMediaReceiverApplicationID</code> with your receiver app id.</p>
-<ol>
-<li><p>For iOS 14+, you need to add <a href="https://developers.google.com/cast/docs/ios_sender/ios_permissions_changes#updating_your_app_on_ios_14">local network permissions</a> to <code>Info.plist</code>:</p>
+   <!--Objective-C-->
+<pre><code class="hljs css language-obj-c"><span class="hljs-built_in">NSString</span> *receiverAppID = kGCKDefaultMediaReceiverApplicationID; <span class="hljs-comment">// or @"ABCD1234"</span>
+GCKDiscoveryCriteria *criteria = [[GCKDiscoveryCriteria alloc] initWithApplicationID:receiverAppID];
+GCKCastOptions* options = [[GCKCastOptions alloc] initWithDiscoveryCriteria:criteria];
+[GCKCastContext setSharedInstanceWithOptions:options];
+</code></pre>
+   <!--END_DOCUSAURUS_CODE_TABS-->
+<p>If using a <a href="https://developers.google.com/cast/docs/web_receiver">custom web receiver</a>, replace <code>kGCKDefaultMediaReceiverApplicationID</code> with your receiver app id.</p></li>
+<li><p>You need to add <a href="https://developers.google.com/cast/docs/ios_sender/permissions_and_discovery">local network permissions</a> to <code>Info.plist</code>:</p>
 <pre><code class="hljs css language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">key</span>&gt;</span>NSBonjourServices<span class="hljs-tag">&lt;/<span class="hljs-name">key</span>&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">array</span>&gt;</span>
   <span class="hljs-tag">&lt;<span class="hljs-name">string</span>&gt;</span>_googlecast._tcp<span class="hljs-tag">&lt;/<span class="hljs-name">string</span>&gt;</span>
@@ -85,7 +91,7 @@ GCKCastOptions* options = [[GCKCastOptions alloc] initWithDiscoveryCriteria:crit
 <p>If using a custom receiver, make sure to replace <code>CC1AD845</code> with your custom receiver app id.</p>
 <p>You may also customize the local network usage description (See <a href="https://github.com/react-native-google-cast/react-native-google-cast/issues/355#issuecomment-906520304">#355</a>).</p>
 <p>Furthermore, a dialog asking the user for the local network permission will now be displayed immediately when the app is opened.</p></li>
-<li><p>(Optional iOS 14+) By default, Cast device discovery is initiated when the user taps the Cast button. If it's the first time, the local network access interstitial will appear, followed by the iOS Local Network Access permissions dialog.</p>
+<li><p>By default, Cast device discovery is initiated when the user taps the Cast button. If it's the first time, the local network access interstitial will appear, followed by the iOS Local Network Access permissions dialog.</p>
 <p>You may <a href="https://developers.google.com/cast/docs/ios_sender/ios_permissions_changes#customizations">customize this behavior</a> in <code>AppDelegate.m</code> by either:</p>
 <ul>
 <li><p>setting <a href="https://developers.google.com/cast/docs/reference/ios/interface_g_c_k_cast_options#a6cfeb6f96487fd0e1fc68c31928d3e3d"><code>disableDiscoveryAutostart</code></a> to <code>true</code>:</p>
@@ -94,21 +100,13 @@ GCKCastOptions* options = [[GCKCastOptions alloc] initWithDiscoveryCriteria:crit
 <blockquote>
 <p>Note: If you disable discovery autostart, you'll need to start it later by calling <a href="../api/classes/discoverymanager#startdiscovery">startDiscovery</a>.</p>
 </blockquote></li>
-<li><p>or setting <a href="https://developers.google.com/cast/docs/reference/ios/interface_g_c_k_cast_options#a1e701e7d1852d1e09ec2aee936b46413"><code>startDiscoveryAfterFirstTapOnCastButton</code></a> to <code>false</code> (only available on Google Cast iOS SDK 4.5.3+). In this case, discovery will start as soon as the SDK is initialized.</p>
+<li><p>or setting <a href="https://developers.google.com/cast/docs/reference/ios/interface_g_c_k_cast_options#a1e701e7d1852d1e09ec2aee936b46413"><code>startDiscoveryAfterFirstTapOnCastButton</code></a> to <code>false</code>. In this case, discovery will start as soon as the SDK is initialized.</p>
 <pre><code class="hljs css language-obj-c">options.startDiscoveryAfterFirstTapOnCastButton = <span class="hljs-literal">false</span>
 </code></pre></li>
-</ul></li>
-<li><p>If using iOS 13+ and you need <a href="https://developers.google.com/cast/docs/ios_sender/ios_permissions_changes#ios_13">guest mode support</a>, add</p>
-<pre><code class="hljs css language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">key</span>&gt;</span>NSBluetoothAlwaysUsageDescription<span class="hljs-tag">&lt;/<span class="hljs-name">key</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">string</span>&gt;</span>${PRODUCT_NAME} uses Bluetooth to discover nearby Cast devices.<span class="hljs-tag">&lt;/<span class="hljs-name">string</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">key</span>&gt;</span>NSBluetoothPeripheralUsageDescription<span class="hljs-tag">&lt;/<span class="hljs-name">key</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">string</span>&gt;</span>${PRODUCT_NAME} uses Bluetooth to discover nearby Cast devices.<span class="hljs-tag">&lt;/<span class="hljs-name">string</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">key</span>&gt;</span>NSMicrophoneUsageDescription<span class="hljs-tag">&lt;/<span class="hljs-name">key</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">string</span>&gt;</span>${PRODUCT_NAME} uses microphone access to listen for ultrasonic tokens
-when pairing with nearby Cast devices.<span class="hljs-tag">&lt;/<span class="hljs-name">string</span>&gt;</span>
-</code></pre>
-<p>Also make sure you've installed guest mode in step 2 of the <a href="installation#ios">Installation</a>.</p>
-<p>The <a href="https://developers.google.com/cast/docs/guest_mode">official Guest Mode documentation</a> explains how guest mode works. Note that most use cases work fine without guest mode so you may decide you don't need it if it's not worth asking for the extra privacy permissions.</p></li>
+</ul>
+<blockquote>
+<p>Warning: Due to a <a href="https://issuetracker.google.com/issues/298066142?pli=1">bug</a> in the Google Cast SDK v4.8.0 and v4.8.1, pressing the Cast button for the first time doesn't start the discovery process and no Cast dialog is shown (at least on some devices). A workaround is to either set <code>options.startDiscoveryAfterFirstTapOnCastButton = false</code> to initialize discovery as soon as the app is opened, or to explicitly call <a href="../api/classes/discoverymanager#startdiscovery">startDiscovery</a>, as described above. This should be fixed in the next release of the SDK.</p>
+</blockquote></li>
 </ol>
 <h2><a class="anchor" aria-hidden="true" id="android"></a><a href="#android" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Android</h2>
 <ol>
@@ -155,7 +153,7 @@ when pairing with nearby Cast devices.<span class="hljs-tag">&lt;/<span class="h
 </ol>
 <h2><a class="anchor" aria-hidden="true" id="chrome"></a><a href="#chrome" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Chrome</h2>
 <p>Not supported yet</p>
-</span></div></article></div><div class="docLastUpdate"><em>Last updated on 2/8/2024 by Petr Bela</em></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/getting-started/installation"><span class="arrow-prev">← </span><span>Installation</span></a><a class="docs-next button" href="/docs/getting-started/usage"><span>Usage</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#expo">Expo</a></li><li><a href="#ios">iOS</a></li><li><a href="#android">Android</a></li><li><a href="#chrome">Chrome</a></li></ul></nav></div></div><script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script><script>
+</span></div></article></div><div class="docLastUpdate"><em>Last updated on 6/26/2024 by Petr Bela</em></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/getting-started/installation"><span class="arrow-prev">← </span><span>Installation</span></a><a class="docs-next button" href="/docs/getting-started/usage"><span>Usage</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#expo">Expo</a></li><li><a href="#ios">iOS</a></li><li><a href="#android">Android</a></li><li><a href="#chrome">Chrome</a></li></ul></nav></div></div><script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script><script>
                 document.addEventListener('keyup', function(e) {
                   if (e.target !== document.body) {
                     return;
