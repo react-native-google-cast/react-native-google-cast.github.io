@@ -58,9 +58,9 @@
 <li><code>androidReceiverAppId</code> (<em>string</em>): custom receiver app id. Default <code>CC1AD845</code>.</li>
 <li><code>androidPlayServicesCastFrameworkVersion</code> (<em>string</em>): Version for the Android Cast SDK. Default <code>+</code> (latest).</li>
 <li><code>iosReceiverAppId</code> (<em>string</em>): custom receiver app id. Default <code>CC1AD845</code>.</li>
-<li><code>iosDisableDiscoveryAutostart</code> (<em>boolean</em>): Whether the discovery of Cast devices should not start automatically at context initialization time. Default <code>false</code>.</li>
-<li><code>iosStartDiscoveryAfterFirstTapOnCastButton</code> (<em>boolean</em>): Whether cast devices discovery start only after a user taps on the Cast button the first time. Default <code>false</code>.</li>
-<li><code>iosSuspendSessionsWhenBackgrounded</code> (<em>boolean</em>): Whether sessions should be suspended when the sender application goes into the background (and resumed when it returns to the foreground). Default <code>true</code>.</li>
+<li><code>iosDisableDiscoveryAutostart</code> (<em>boolean</em>): Whether the discovery of Cast devices should not start automatically at context initialization time. Default <code>false</code>. if set to <code>true</code>, you'll need to start it later by calling <a href="../api/classes/discoverymanager#startdiscovery">DiscoveryManager.startDiscovery</a>.</li>
+<li><code>iosStartDiscoveryAfterFirstTapOnCastButton</code> (<em>boolean</em>): Whether cast devices discovery start only after a user taps on the Cast button for the first time. Default <code>true</code>. If set to <code>false</code>, discovery will start as soon as the SDK is initialized.</li>
+<li><code>iosSuspendSessionsWhenBackgrounded</code> (<em>boolean</em>): Whether sessions should be suspended when the sender application goes into the background (and resumed when it returns to the foreground). Default <code>true</code>. It is appropriate to set this to <code>false</code> in applications that are able to maintain network connections indefinitely while in the background.</li>
 </ul>
 <pre><code class="hljs css language-json">{
   <span class="hljs-attr">"expo"</span>: {
@@ -76,6 +76,9 @@
   }
 }
 </code></pre>
+<blockquote>
+<p>Warning: Due to a <a href="https://issuetracker.google.com/issues/298066142?pli=1">bug</a> in the Google Cast SDK v4.8.0 and v4.8.1, pressing the Cast button for the first time doesn't start the discovery process and no Cast dialog is shown (at least on some devices). A workaround is to either set <code>iosStartDiscoveryAfterFirstTapOnCastButton: false</code> to initialize discovery as soon as the app is opened, or to explicitly call <a href="../api/classes/discoverymanager#startdiscovery">DiscoveryManager.startDiscovery</a>. This should be fixed in the next release of the SDK.</p>
+</blockquote>
 <h2><a class="anchor" aria-hidden="true" id="ios"></a><a href="#ios" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>iOS</h2>
 <ol>
 <li><p>In <code>AppDelegate.m</code> (or <code>AppDelegate.swift</code>) add</p>
