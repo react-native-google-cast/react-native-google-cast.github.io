@@ -54,14 +54,30 @@
 <p>or</p>
 <p><code>$ yarn add react-native-google-cast</code></p>
 <h2><a class="anchor" aria-hidden="true" id="expo"></a><a href="#expo" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Expo</h2>
-<p>Since Expo SDK 42, you can use this library in a custom-built Expo app.</p>
-<p>Simply follow instructions at <a href="https://github.com/expo/config-plugins/tree/master/packages/react-native-google-cast">@config-plugins/react-native-google-cast</a> which will take care of all the installation and setup steps.</p>
-<p>Then ignore the rest of this page and jump straight to <a href="usage">Usage</a>.</p>
-<p>If you're unsure please check the <a href="https://github.com/react-native-google-cast/RNGCExpo">example Expo app</a>.</p>
+<p>Since Expo SDK 42, you can use this library in a custom-built Expo app.
+There is a config plugin included to auto-configure <code>react-native-google-cast</code> when the native code is generated (<code>npx expo prebuild</code>).</p>
+<blockquote>
+<p>This package cannot be used in the &quot;Expo Go&quot; app because <a href="https://docs.expo.io/workflow/customizing/">it requires custom native code</a>.</p>
+</blockquote>
+<p>Add the <a href="https://docs.expo.io/guides/config-plugins/">config plugin</a> to the <a href="https://docs.expo.io/versions/latest/config/app/#plugins"><code>plugins</code></a> array of your <code>app.json</code> or <code>app.config.js</code>:</p>
+<pre><code class="hljs css language-json">{
+  <span class="hljs-attr">"expo"</span>: {
+    <span class="hljs-attr">"plugins"</span>: [
+      <span class="hljs-string">"react-native-google-cast"</span>,
+      [<span class="hljs-string">"expo-build-properties"</span>, { <span class="hljs-attr">"ios"</span>: { <span class="hljs-attr">"deploymentTarget"</span>: <span class="hljs-string">"14.0"</span> } }]
+    ]
+  }
+}
+</code></pre>
+<blockquote>
+<p>The latest Google Cast SDK (currently <a href="https://developers.google.com/cast/docs/release-notes#april-18,-2024">4.8.1</a>) only supports iOS 14 or newer, which we can configure using <code>expo-build-properties</code>. If you need to support older iOS versions, use an older version of the library but note that some features might not be available.</p>
+</blockquote>
+<p>Next, rebuild your app as described in the <a href="https://docs.expo.io/workflow/customizing/">&quot;Adding custom native code&quot;</a> guide.</p>
+<p>Then ignore the rest of this page and continue to <a href="setup#expo">Setup</a>.</p>
 <h2><a class="anchor" aria-hidden="true" id="ios"></a><a href="#ios" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>iOS</h2>
 <p>Thanks to autolinking, the package and its Google Cast SDK dependency are automatically installed when you run <code>pod install</code>.</p>
 <blockquote>
-<p>The latest Google Cast SDK (currently <a href="https://developers.google.com/cast/docs/release-notes#april-18,-2024">4.8.1</a>) only supports iOS 14 or newer. If you need to support older iOS versions, use an older version of the library but note that some features might not be available.</p>
+<p>The latest Google Cast SDK (currently <a href="https://developers.google.com/cast/docs/release-notes#april-18,-2024">4.8.1</a>) only supports iOS 14 or newer. <strong>Ensure that you set deployment target to iOS 14 or higher.</strong> Otherwise, an older version of the SDK will be installed and some features might not be available.</p>
 </blockquote>
 <blockquote>
 <p>Before v4.8.1, Google Cast used to publish different variants of the SDK based on whether they included Guest Mode support. That feature has been removed in the latest versions so now there's only a single SDK variant.</p>
@@ -90,7 +106,7 @@
 </code></pre>
 <h2><a class="anchor" aria-hidden="true" id="chrome"></a><a href="#chrome" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Chrome</h2>
 <p>Not supported yet</p>
-</span></div></article></div><div class="docLastUpdate"><em>Last updated on 6/26/2024 by Petr Bela</em></div><div class="docs-prevnext"><a class="docs-next button" href="/docs/getting-started/setup"><span>Setup</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#expo">Expo</a></li><li><a href="#ios">iOS</a></li><li><a href="#android">Android</a></li><li><a href="#chrome">Chrome</a></li></ul></nav></div></div><script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script><script>
+</span></div></article></div><div class="docLastUpdate"><em>Last updated on 7/14/2024 by Bram del Canho</em></div><div class="docs-prevnext"><a class="docs-next button" href="/docs/getting-started/setup"><span>Setup</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#expo">Expo</a></li><li><a href="#ios">iOS</a></li><li><a href="#android">Android</a></li><li><a href="#chrome">Chrome</a></li></ul></nav></div></div><script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script><script>
                 document.addEventListener('keyup', function(e) {
                   if (e.target !== document.body) {
                     return;
