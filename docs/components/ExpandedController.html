@@ -53,6 +53,21 @@
         </script></nav></div><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle">ExpandedController</h1></header><article><div><span><p>The <a href="https://developers.google.com/cast/docs/design_checklist/sender#sender-expanded-controller">expanded controller</a> is a full screen view which offers full control of the remote media playback. This view should allow a casting app to manage every manageable aspect of a cast session, with the exception of receiver volume control and session lifecycle (connect/stop casting). It also provides all the status information about the media session (artwork, title, subtitle, and so forth).</p>
 <h3><a class="anchor" aria-hidden="true" id="setup"></a><a href="#setup" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Setup</h3>
 <p>To use the default expanded controller:</p>
+<h4><a class="anchor" aria-hidden="true" id="expo"></a><a href="#expo" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Expo</h4>
+<pre><code class="hljs css language-json">{
+  "expo": {
+    "plugins": [
+      [
+        "react-native-google-cast",
+        {
+          // ...
+          "expandedController": true
+        }
+      ]
+    ]
+  }
+}
+</code></pre>
 <h4><a class="anchor" aria-hidden="true" id="ios"></a><a href="#ios" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>iOS</h4>
 <p>In <code>AppDelegate</code>'s <code>application:didFinishLaunchingWithOptions</code> method add</p>
 </span></div><div class="tabs"><div class="nav-tabs"><div class="nav-link active" id="2-tab" data-group="group_1" data-tab="tabpanel_2">Objective-C</div><div class="nav-link" id="3-tab" data-group="group_1" data-tab="tabpanel_3">Swift</div></div><div class="tab-content"><div class="tab-pane active" data-group="group_1" tabindex="-1" id="tabpanel_2"><div><span><pre><code class="hljs css language-obj-c">[GCKCastContext sharedInstance].useDefaultExpandedMediaControls = <span class="hljs-literal">true</span>;
@@ -69,8 +84,8 @@
 </code></pre>
 <p>The expanded controller will also be shown automatically when the user taps the mini controller.</p>
 <h2><a class="anchor" aria-hidden="true" id="customizing-expanded-controller"></a><a href="#customizing-expanded-controller" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Customizing expanded controller</h2>
-<p>TODO</p>
-</span></div></article></div><div class="docLastUpdate"><em>Last updated on 1/2/2021 by Petr Bela</em></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/components/CastButton"><span class="arrow-prev">← </span><span class="function-name-prevnext">CastButton</span></a><a class="docs-next button" href="/docs/api/classes/castchannel"><span class="function-name-prevnext">CastChannel</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#customizing-expanded-controller">Customizing expanded controller</a></li></ul></nav></div></div><script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script><script>
+<p>Not implemented yet</p>
+</span></div></article></div><div class="docLastUpdate"><em>Last updated on 9/11/2024 by Petr Bela</em></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/components/CastButton"><span class="arrow-prev">← </span><span class="function-name-prevnext">CastButton</span></a><a class="docs-next button" href="/docs/api/classes/castchannel"><span class="function-name-prevnext">CastChannel</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#customizing-expanded-controller">Customizing expanded controller</a></li></ul></nav></div></div><script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script><script>
                 document.addEventListener('keyup', function(e) {
                   if (e.target !== document.body) {
                     return;
