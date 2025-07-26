@@ -140,7 +140,7 @@
 <pre><code class="hljs css language-java"><span class="hljs-comment">// ...</span>
 <span class="hljs-keyword">import</span> android.os.Bundle;
 <span class="hljs-keyword">import</span> androidx.annotation.Nullable;
-<span class="hljs-keyword">import</span> com.google.android.gms.cast.framework.CastContext;
+<span class="hljs-keyword">import</span> com.reactnative.googlecast.api.RNGCCastContext;
 
 <span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MainActivity</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">ReactActivity</span> </span>{
   <span class="hljs-comment">// ...</span>
@@ -149,18 +149,14 @@
   <span class="hljs-function"><span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onCreate</span><span class="hljs-params">(@Nullable Bundle savedInstanceState)</span> </span>{
     <span class="hljs-keyword">super</span>.onCreate(savedInstanceState);
 
-    <span class="hljs-keyword">try</span> {
-      <span class="hljs-comment">// lazy load Google Cast context</span>
-      CastContext.getSharedInstance(<span class="hljs-keyword">this</span>);
-    } <span class="hljs-keyword">catch</span> (Exception e) {
-      <span class="hljs-comment">// cast framework not supported</span>
-    }
+    <span class="hljs-comment">// lazy load Google Cast context (if supported on this device)</span>
+    RNGCCastContext.getSharedInstance(<span class="hljs-keyword">this</span>);
   }
 }
 </code></pre>
 <pre><code class="hljs css language-kt"><span class="hljs-keyword">import</span> android.os.Bundle
 <span class="hljs-keyword">import</span> androidx.<span class="hljs-keyword">annotation</span>.Nullable
-<span class="hljs-keyword">import</span> com.google.android.gms.cast.framework.CastContext
+<span class="hljs-keyword">import</span> com.reactnative.googlecast.api.RNGCCastContext
 
 <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MainActivity</span> : <span class="hljs-type">ReactActivity</span></span>() {
   <span class="hljs-comment">// ...</span>
@@ -168,12 +164,8 @@
   <span class="hljs-keyword">override</span> <span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">onCreate</span><span class="hljs-params">(<span class="hljs-meta">@Nullable</span> savedInstanceState: <span class="hljs-type">Bundle</span>?)</span></span> {
     <span class="hljs-keyword">super</span>.onCreate(savedInstanceState)
 
-    <span class="hljs-keyword">try</span> {
-      <span class="hljs-comment">// lazy load Google Cast context</span>
-      CastContext.getSharedInstance(<span class="hljs-keyword">this</span>)
-    } <span class="hljs-keyword">catch</span> (e: Exception) {
-      <span class="hljs-comment">// cast framework not supported</span>
-    }
+    <span class="hljs-comment">// lazy load Google Cast context (if supported on this device)</span>
+    RNGCCastContext.getSharedInstance(<span class="hljs-keyword">this</span>)
   }
 }
 </code></pre>
